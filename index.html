@@ -6,17 +6,17 @@
     <title>Escala de Apgar</title>
     <style>
       :root {
-        --bg: #f4f8ff;
+        --bg: #f5f9ff;
         --card: #ffffff;
-        --primary: #2f6fed;
-        --primary-dark: #1d4fb5;
-        --secondary: #eaf2ff;
-        --text: #1b2a41;
-        --muted: #5b6b82;
-        --good: #2e9d5a;
-        --warn: #d69c2f;
-        --danger: #d94d4d;
-        --border: #dfe9ff;
+        --primary: #2d6cdf;
+        --primary-dark: #1b4fb2;
+        --secondary: #edf4ff;
+        --text: #1d2a3a;
+        --muted: #586779;
+        --green: #2e9d5a;
+        --yellow: #d9a227;
+        --red: #d94d4d;
+        --border: #dfeafc;
       }
 
       * { box-sizing: border-box; }
@@ -24,22 +24,29 @@
       body {
         margin: 0;
         font-family: Arial, Helvetica, sans-serif;
-        background: linear-gradient(180deg, var(--bg) 0%, #edf4ff 100%);
+        background: linear-gradient(180deg, #f3f8ff 0%, #edf4ff 100%);
         color: var(--text);
       }
 
       .container {
         max-width: 1100px;
         margin: 0 auto;
-        padding: 48px 20px 80px;
+        padding: 32px 18px 80px;
       }
 
       .hero {
-        background: linear-gradient(135deg, var(--primary) 0%, #5d8ef8 100%);
+        background: linear-gradient(135deg, var(--primary) 0%, #6c9bff 100%);
         color: white;
-        padding: 36px 28px;
         border-radius: 22px;
-        box-shadow: 0 20px 40px rgba(47, 111, 237, 0.18);
+        padding: 28px;
+        box-shadow: 0 18px 40px rgba(45, 108, 223, 0.18);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 0.9fr;
+        gap: 20px;
+        align-items: center;
       }
 
       .hero h1 {
@@ -49,255 +56,374 @@
 
       .hero p {
         margin: 0;
-        font-size: 1.08rem;
         line-height: 1.7;
-        max-width: 800px;
+        font-size: 1.04rem;
+      }
+
+      .hero img {
+        width: 100%;
+        height: 230px;
+        object-fit: cover;
+        border-radius: 18px;
+        border: 3px solid rgba(255,255,255,0.35);
       }
 
       .section {
-        margin-top: 36px;
         background: var(--card);
         border: 1px solid var(--border);
         border-radius: 18px;
-        padding: 26px 24px;
+        padding: 24px 20px;
+        margin-top: 28px;
         box-shadow: 0 10px 20px rgba(15, 32, 64, 0.04);
       }
 
       h2 {
-        margin-top: 0;
+        margin: 0 0 18px;
         color: var(--primary-dark);
         font-size: clamp(1.5rem, 2vw, 2rem);
       }
 
-      p, li {
-        font-size: 1rem;
-        line-height: 1.7;
-        color: var(--text);
-      }
-
       .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 18px;
-        margin-top: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
       }
 
-      .card {
+      .criterion {
         background: var(--secondary);
         border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 18px 18px 16px;
+        border-radius: 15px;
+        padding: 18px 16px;
       }
 
-      .card h3 {
-        margin: 0 0 10px;
+      .criterion .icon {
+        font-size: 2rem;
+        margin-bottom: 8px;
+      }
+
+      .criterion h3 {
+        margin: 0 0 8px;
         color: var(--primary-dark);
-        font-size: 1.15rem;
+        font-size: 1.1rem;
       }
 
-      .score {
+      .criterion p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .score-box {
         display: inline-block;
         background: var(--primary);
         color: white;
-        padding: 4px 10px;
         border-radius: 999px;
+        padding: 5px 10px;
+        font-size: 0.78rem;
         font-weight: bold;
-        font-size: 0.9rem;
         margin-bottom: 8px;
+      }
+
+      .two-cols {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 20px;
+        align-items: start;
       }
 
       table {
         width: 100%;
         border-collapse: collapse;
-        margin-top: 18px;
-        overflow: hidden;
-        border-radius: 14px;
+        margin-top: 8px;
       }
 
       th, td {
-        text-align: left;
-        padding: 14px 12px;
+        padding: 12px 10px;
         border-bottom: 1px solid var(--border);
+        text-align: left;
       }
 
       th {
         background: #edf4ff;
         color: var(--primary-dark);
-        font-weight: bold;
       }
 
-      .legend {
-        display: flex;
+      .calculator {
+        background: #f7faff;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 18px;
+      }
+
+      .calc-row {
+        display: grid;
+        grid-template-columns: 1.4fr 0.7fr;
         gap: 12px;
+        margin-bottom: 12px;
+        align-items: center;
+      }
+
+      .calc-row label {
+        font-weight: 600;
+      }
+
+      select {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: white;
+        font-size: 1rem;
+      }
+
+      .result {
+        margin-top: 16px;
+        background: linear-gradient(135deg, #e8f6ee 0%, #edf4ff 100%);
+        border: 1px solid #cfe7d8;
+        border-radius: 14px;
+        padding: 16px;
+      }
+
+      .result h3 {
+        margin: 0 0 8px;
+        color: var(--primary-dark);
+      }
+
+      .total {
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .interpretation {
+        display: flex;
         flex-wrap: wrap;
+        gap: 10px;
         margin-top: 18px;
       }
 
       .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
+        display: inline-block;
         padding: 8px 12px;
         border-radius: 999px;
-        font-weight: 600;
+        font-weight: 700;
+        border: 1px solid transparent;
+      }
+
+      .good { background: rgba(46,157,90,0.1); color: var(--green); border-color: rgba(46,157,90,0.2); }
+      .warn { background: rgba(217,162,39,0.14); color: var(--yellow); border-color: rgba(217,162,39,0.2); }
+      .danger { background: rgba(217,77,77,0.1); color: var(--red); border-color: rgba(217,77,77,0.18); }
+
+      .mini-image {
+        width: 100%;
+        border-radius: 16px;
+        height: 230px;
+        object-fit: cover;
         border: 1px solid var(--border);
       }
 
-      .pill.good { background: rgba(46,157,90,0.08); color: var(--good); }
-      .pill.warn { background: rgba(214,156,47,0.09); color: var(--warn); }
-      .pill.danger { background: rgba(217,77,77,0.08); color: var(--danger); }
-
-      ul {
-        padding-left: 20px;
-      }
-
-      .footnote {
+      .footer-note {
         margin-top: 18px;
         color: var(--muted);
-        font-size: 0.96rem;
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 780px) {
+        .hero-grid, .two-cols {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
   <body>
     <div class="container">
       <header class="hero">
-        <h1>Escala de Apgar</h1>
-        <p>
-          La Escala de Apgar es una herramienta rápida y sencilla para valorar el estado
-          del recién nacido inmediatamente después del nacimiento. Permite identificar si el
-          bebé necesita ayuda respiratoria o atención inmediata.
-        </p>
+        <div class="hero-grid">
+          <div>
+            <h1>Escala de Apgar</h1>
+            <p>
+              Evalúa el estado del recién nacido en los primeros minutos de vida.
+              Sirve para detectar si necesita ayuda respiratoria o atención inmediata.
+            </p>
+          </div>
+          <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=900&q=80" alt="Bebé recién nacido" />
+        </div>
       </header>
 
       <section class="section">
         <h2>¿Qué es y para qué sirve?</h2>
         <p>
-          La escala de Apgar evalúa la adaptación del bebé a la vida extrauterina en los
-          primeros minutos tras el parto. Se usa para observar signos de buena adaptación o
-          de dificultad para iniciar la respiración y la circulación.
-        </p>
-        <p>
-          Se aplica generalmente al minuto y a los 5 minutos de vida, y en algunos casos se
-          repite a los 10 minutos si el puntaje inicial es bajo. Su objetivo es detectar si el
-          recién nacido presenta depresión neonatal o necesita apoyo inmediato.
+          La escala de Apgar se aplica al minuto y a los 5 minutos de vida. Con ella se observa
+          cómo se adapta el bebé a la vida fuera del útero y si requiere apoyo médico inmediato.
         </p>
       </section>
 
       <section class="section">
-        <h2>Los cinco criterios de evaluación</h2>
+        <h2>Los 5 criterios</h2>
         <div class="grid">
-          <article class="card">
-            <div class="score">0-2 puntos</div>
+          <article class="criterion">
+            <div class="score-box">0–2</div>
+            <div class="icon">💓</div>
             <h3>Frecuencia cardiaca</h3>
-            <p>Evalúa la rapidez del latido cardíaco. El valor más favorable es un latido fuerte y regular.</p>
+            <p>Detecta si el corazón late de forma normal y fuerte.</p>
           </article>
 
-          <article class="card">
-            <div class="score">0-2 puntos</div>
-            <h3>Esfuerzo respiratorio</h3>
-            <p>Se observa si el bebé llora, respira con esfuerzo o presenta apnea.</p>
+          <article class="criterion">
+            <div class="score-box">0–2</div>
+            <div class="icon">🫁</div>
+            <h3>Respiración</h3>
+            <p>Valora si el bebé respira bien, llora o presenta dificultad.</p>
           </article>
 
-          <article class="card">
-            <div class="score">0-2 puntos</div>
+          <article class="criterion">
+            <div class="score-box">0–2</div>
+            <div class="icon">💪</div>
             <h3>Tono muscular</h3>
-            <p>Se evalúa la fuerza y la actividad de los músculos. Un bebé con buen tono suele mover brazos y piernas.</p>
+            <p>Observa si tiene movimiento activo y tono adecuado.</p>
           </article>
 
-          <article class="card">
-            <div class="score">0-2 puntos</div>
-            <h3>Reflejos / irritabilidad</h3>
-            <p>Se mide la respuesta ante estímulos, como la tos, la irritación o el estímulo del llanto.</p>
+          <article class="criterion">
+            <div class="score-box">0–2</div>
+            <div class="icon">👶</div>
+            <h3>Reflejos</h3>
+            <p>Se evalúa la respuesta ante estímulos como el llanto o el movimiento.</p>
           </article>
 
-          <article class="card">
-            <div class="score">0-2 puntos</div>
+          <article class="criterion">
+            <div class="score-box">0–2</div>
+            <div class="icon">🎀</div>
             <h3>Color de la piel</h3>
-            <p>Se observa el tono de la piel, especialmente la coloración del cuerpo y de las extremidades.</p>
+            <p>Revisa si la piel está rosada o presenta cianosis.</p>
           </article>
         </div>
       </section>
 
       <section class="section">
-        <h2>Puntuación</h2>
-        <p>
-          Cada criterio recibe 0, 1 o 2 puntos, según la condición del recién nacido. La suma máxima
-          es 10 puntos.
-        </p>
+        <div class="two-cols">
+          <div>
+            <h2>Cómo se puntúa</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Criterio</th>
+                  <th>0</th>
+                  <th>1</th>
+                  <th>2</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Corazón</td><td>Ausente</td><td>&lt;100</td><td>&gt;100</td></tr>
+                <tr><td>Respiración</td><td>Ausente</td><td>Débil</td><td>Fuerte</td></tr>
+                <tr><td>Tono</td><td>Flácido</td><td>Parcial</td><td>Activo</td></tr>
+                <tr><td>Reflejos</td><td>Sin reacción</td><td>Débil</td><td>Buena reacción</td></tr>
+                <tr><td>Color</td><td>Azul</td><td>Mitad rosa</td><td>Todo rosa</td></tr>
+              </tbody>
+            </table>
+          </div>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Criterio</th>
-              <th>0 puntos</th>
-              <th>1 punto</th>
-              <th>2 puntos</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Frecuencia cardiaca</td>
-              <td>Ausente</td>
-              <td>Menor de 100 lpm</td>
-              <td>Mayor de 100 lpm</td>
-            </tr>
-            <tr>
-              <td>Esfuerzo respiratorio</td>
-              <td>Ausente</td>
-              <td>Respira débilmente o irregular</td>
-              <td>Llanto fuerte y respiración normal</td>
-            </tr>
-            <tr>
-              <td>Tono muscular</td>
-              <td>Flácido</td>
-              <td>Flexión disminuida</td>
-              <td>Movimiento activo, brazos y piernas flexionados</td>
-            </tr>
-            <tr>
-              <td>Reflejos / irritabilidad</td>
-              <td>Sin respuesta</td>
-              <td>Respuesta débil</td>
-              <td>Llanto o estornudo al estimular</td>
-            </tr>
-            <tr>
-              <td>Color de la piel</td>
-              <td>Pálido o azul</td>
-              <td>Tronco rosado, extremidades cianóticas</td>
-              <td>Todo rosado</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section class="section">
-        <h2>¿Cuándo se aplica?</h2>
-        <ul>
-          <li>Inmediatamente después del nacimiento.</li>
-          <li>Al minuto de vida para evaluar adaptación inicial.</li>
-          <li>A los 5 minutos para valorar la respuesta a la atención inicial.</li>
-          <li>Si el puntaje es bajo, puede repetirse a los 10 minutos.</li>
-        </ul>
-        <p class="footnote">
-          Se aplica en la sala de parto o en la atención inmediata del recién nacido, con la finalidad
-          de detectar si requiere reanimación, soporte respiratorio o vigilancia especial.
-        </p>
-      </section>
-
-      <section class="section">
-        <h2>Interpretación del puntaje</h2>
-        <div class="legend">
-          <span class="pill good">7 a 10: Normal o buena adaptación</span>
-          <span class="pill warn">4 a 6: Depresión moderada</span>
-          <span class="pill danger">0 a 3: Depresión severa / riesgo alto</span>
+          <div>
+            <img class="mini-image" src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=900&q=80" alt="Cuidados neonatales" />
+          </div>
         </div>
+      </section>
 
-        <p>
-          Un puntaje de 7 a 10 indica que el recién nacido tiene buena adaptación a la vida extrauterina.
-          Entre 4 y 6, puede requerir observación y apoyo adicional. Cuando el puntaje es 0 a 3, existe
-          mayor preocupación por insuficiencia respiratoria, mala adaptación o necesidad de intervención
-          inmediata.
+      <section class="section">
+        <h2>Calculadora rápida</h2>
+        <div class="calculator">
+          <div class="calc-row">
+            <label>Frecuencia cardiaca</label>
+            <select class="score-input" data-key="cardiaca">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+            </select>
+          </div>
+
+          <div class="calc-row">
+            <label>Esfuerzo respiratorio</label>
+            <select class="score-input" data-key="respiracion">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+            </select>
+          </div>
+
+          <div class="calc-row">
+            <label>Tono muscular</label>
+            <select class="score-input" data-key="tono">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+            </select>
+          </div>
+
+          <div class="calc-row">
+            <label>Reflejos / irritabilidad</label>
+            <select class="score-input" data-key="reflejos">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+            </select>
+          </div>
+
+          <div class="calc-row">
+            <label>Color de la piel</label>
+            <select class="score-input" data-key="color">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2" selected>2</option>
+            </select>
+          </div>
+
+          <div class="result">
+            <h3>Resultado</h3>
+            <p id="total" class="total">10</p>
+            <p id="mensaje">Buena adaptación. El bebé se encuentra bien.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Interpretación</h2>
+        <div class="interpretation">
+          <span class="pill good">7–10: buena adaptación</span>
+          <span class="pill warn">4–6: depresión moderada</span>
+          <span class="pill danger">0–3: riesgo alto</span>
+        </div>
+        <p class="footer-note">
+          La evaluación se hace en los primeros minutos y ayuda a determinar si requiere apoyo
+          inmediato o vigilancia especial.
         </p>
       </section>
     </div>
+
+    <script>
+      const selects = document.querySelectorAll('.score-input');
+      const totalEl = document.getElementById('total');
+      const mensajeEl = document.getElementById('mensaje');
+
+      function updateResult() {
+        let total = 0;
+        selects.forEach(select => {
+          total += Number(select.value);
+        });
+
+        totalEl.textContent = total;
+
+        if (total >= 7) {
+          mensajeEl.textContent = 'Buena adaptación. El bebé se encuentra bien.';
+          mensajeEl.style.color = '#2e9d5a';
+        } else if (total >= 4) {
+          mensajeEl.textContent = 'Depresión moderada. Requiere observación y apoyo.';
+          mensajeEl.style.color = '#d9a227';
+        } else {
+          mensajeEl.textContent = 'Depresión severa. Riesgo alto y requiere atención inmediata.';
+          mensajeEl.style.color = '#d94d4d';
+        }
+      }
+
+      selects.forEach(select => select.addEventListener('change', updateResult));
+      updateResult();
+    </script>
   </body>
 </html>
