@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escala de Apgar</title>
+    <style>
+      :root {
+        --bg: #f4f8ff;
+        --card: #ffffff;
+        --primary: #2f6fed;
+        --primary-dark: #1d4fb5;
+        --secondary: #eaf2ff;
+        --text: #1b2a41;
+        --muted: #5b6b82;
+        --good: #2e9d5a;
+        --warn: #d69c2f;
+        --danger: #d94d4d;
+        --border: #dfe9ff;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, var(--bg) 0%, #edf4ff 100%);
+        color: var(--text);
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 48px 20px 80px;
+      }
+
+      .hero {
+        background: linear-gradient(135deg, var(--primary) 0%, #5d8ef8 100%);
+        color: white;
+        padding: 36px 28px;
+        border-radius: 22px;
+        box-shadow: 0 20px 40px rgba(47, 111, 237, 0.18);
+      }
+
+      .hero h1 {
+        margin: 0 0 12px;
+        font-size: clamp(2rem, 4vw, 3rem);
+      }
+
+      .hero p {
+        margin: 0;
+        font-size: 1.08rem;
+        line-height: 1.7;
+        max-width: 800px;
+      }
+
+      .section {
+        margin-top: 36px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 26px 24px;
+        box-shadow: 0 10px 20px rgba(15, 32, 64, 0.04);
+      }
+
+      h2 {
+        margin-top: 0;
+        color: var(--primary-dark);
+        font-size: clamp(1.5rem, 2vw, 2rem);
+      }
+
+      p, li {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--text);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+        margin-top: 18px;
+      }
+
+      .card {
+        background: var(--secondary);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 18px 18px 16px;
+      }
+
+      .card h3 {
+        margin: 0 0 10px;
+        color: var(--primary-dark);
+        font-size: 1.15rem;
+      }
+
+      .score {
+        display: inline-block;
+        background: var(--primary);
+        color: white;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-weight: bold;
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 18px;
+        overflow: hidden;
+        border-radius: 14px;
+      }
+
+      th, td {
+        text-align: left;
+        padding: 14px 12px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      th {
+        background: #edf4ff;
+        color: var(--primary-dark);
+        font-weight: bold;
+      }
+
+      .legend {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-weight: 600;
+        border: 1px solid var(--border);
+      }
+
+      .pill.good { background: rgba(46,157,90,0.08); color: var(--good); }
+      .pill.warn { background: rgba(214,156,47,0.09); color: var(--warn); }
+      .pill.danger { background: rgba(217,77,77,0.08); color: var(--danger); }
+
+      ul {
+        padding-left: 20px;
+      }
+
+      .footnote {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 0.96rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="hero">
+        <h1>Escala de Apgar</h1>
+        <p>
+          La Escala de Apgar es una herramienta rápida y sencilla para valorar el estado
+          del recién nacido inmediatamente después del nacimiento. Permite identificar si el
+          bebé necesita ayuda respiratoria o atención inmediata.
+        </p>
+      </header>
+
+      <section class="section">
+        <h2>¿Qué es y para qué sirve?</h2>
+        <p>
+          La escala de Apgar evalúa la adaptación del bebé a la vida extrauterina en los
+          primeros minutos tras el parto. Se usa para observar signos de buena adaptación o
+          de dificultad para iniciar la respiración y la circulación.
+        </p>
+        <p>
+          Se aplica generalmente al minuto y a los 5 minutos de vida, y en algunos casos se
+          repite a los 10 minutos si el puntaje inicial es bajo. Su objetivo es detectar si el
+          recién nacido presenta depresión neonatal o necesita apoyo inmediato.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Los cinco criterios de evaluación</h2>
+        <div class="grid">
+          <article class="card">
+            <div class="score">0-2 puntos</div>
+            <h3>Frecuencia cardiaca</h3>
+            <p>Evalúa la rapidez del latido cardíaco. El valor más favorable es un latido fuerte y regular.</p>
+          </article>
+
+          <article class="card">
+            <div class="score">0-2 puntos</div>
+            <h3>Esfuerzo respiratorio</h3>
+            <p>Se observa si el bebé llora, respira con esfuerzo o presenta apnea.</p>
+          </article>
+
+          <article class="card">
+            <div class="score">0-2 puntos</div>
+            <h3>Tono muscular</h3>
+            <p>Se evalúa la fuerza y la actividad de los músculos. Un bebé con buen tono suele mover brazos y piernas.</p>
+          </article>
+
+          <article class="card">
+            <div class="score">0-2 puntos</div>
+            <h3>Reflejos / irritabilidad</h3>
+            <p>Se mide la respuesta ante estímulos, como la tos, la irritación o el estímulo del llanto.</p>
+          </article>
+
+          <article class="card">
+            <div class="score">0-2 puntos</div>
+            <h3>Color de la piel</h3>
+            <p>Se observa el tono de la piel, especialmente la coloración del cuerpo y de las extremidades.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Puntuación</h2>
+        <p>
+          Cada criterio recibe 0, 1 o 2 puntos, según la condición del recién nacido. La suma máxima
+          es 10 puntos.
+        </p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Criterio</th>
+              <th>0 puntos</th>
+              <th>1 punto</th>
+              <th>2 puntos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Frecuencia cardiaca</td>
+              <td>Ausente</td>
+              <td>Menor de 100 lpm</td>
+              <td>Mayor de 100 lpm</td>
+            </tr>
+            <tr>
+              <td>Esfuerzo respiratorio</td>
+              <td>Ausente</td>
+              <td>Respira débilmente o irregular</td>
+              <td>Llanto fuerte y respiración normal</td>
+            </tr>
+            <tr>
+              <td>Tono muscular</td>
+              <td>Flácido</td>
+              <td>Flexión disminuida</td>
+              <td>Movimiento activo, brazos y piernas flexionados</td>
+            </tr>
+            <tr>
+              <td>Reflejos / irritabilidad</td>
+              <td>Sin respuesta</td>
+              <td>Respuesta débil</td>
+              <td>Llanto o estornudo al estimular</td>
+            </tr>
+            <tr>
+              <td>Color de la piel</td>
+              <td>Pálido o azul</td>
+              <td>Tronco rosado, extremidades cianóticas</td>
+              <td>Todo rosado</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section">
+        <h2>¿Cuándo se aplica?</h2>
+        <ul>
+          <li>Inmediatamente después del nacimiento.</li>
+          <li>Al minuto de vida para evaluar adaptación inicial.</li>
+          <li>A los 5 minutos para valorar la respuesta a la atención inicial.</li>
+          <li>Si el puntaje es bajo, puede repetirse a los 10 minutos.</li>
+        </ul>
+        <p class="footnote">
+          Se aplica en la sala de parto o en la atención inmediata del recién nacido, con la finalidad
+          de detectar si requiere reanimación, soporte respiratorio o vigilancia especial.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>Interpretación del puntaje</h2>
+        <div class="legend">
+          <span class="pill good">7 a 10: Normal o buena adaptación</span>
+          <span class="pill warn">4 a 6: Depresión moderada</span>
+          <span class="pill danger">0 a 3: Depresión severa / riesgo alto</span>
+        </div>
+
+        <p>
+          Un puntaje de 7 a 10 indica que el recién nacido tiene buena adaptación a la vida extrauterina.
+          Entre 4 y 6, puede requerir observación y apoyo adicional. Cuando el puntaje es 0 a 3, existe
+          mayor preocupación por insuficiencia respiratoria, mala adaptación o necesidad de intervención
+          inmediata.
+        </p>
+      </section>
+    </div>
+  </body>
+</html>
